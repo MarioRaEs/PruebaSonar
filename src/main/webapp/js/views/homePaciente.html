@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="css/home.css" rel="stylesheet" type="text/css">
+<head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="col-md-4 static">
+			<div class="profile-card">
+					<h1
+						style="color: #FFFFFF; position: center; float: left; margin-left: 30px; margin-right: 400px; margin-top: 5px;">SIGEVA</h1>
+					<img style="float: left;"
+						src="https://bootdey.com/img/Content/avatar/avatar1.png"
+						alt="user" class="profile-photo">
+					<h5>
+						<a data-bind="html: nombre" href="#" style="float: left;" class="text-white">Paciente</a>
+					</h5>
+					<oj-button data-bind="click : logout" chroming="callToAction" style="margin-left:650px;">Cerrar Sesion</oj-button>
+			</div>
+			
+			<div style="text-align: center;" data-bind="visible : botonCita()==1">
+				<input type="text" id="dniUsuario" data-bind="value : dniPaciente" placeholder="Dni">&nbsp;&nbsp;
+				<select id="menuCentros" style="margin-top:3px;">
+				 <!-- ko foreach : centrosSanitarios -->
+					<option data-bind="html : nombre"></option>
+				<!-- /ko -->
+				</select>
+				<oj-button chroming="callToAction" class="oj-button-lg"
+					data-bind="click : solicitarCita" style="margin-top:3px;">Solicitar
+				Cita</oj-button>
+			</div>
+
+
+			<div style="text-align: center;" data-bind="visible : botonFecha()==1">
+				<h6 style="font-family: Verdana;" align="center">
+					Fecha Primera Dosis: <span data-bind="html : fechaPrimeraDosis"
+						style="font-family: Verdana;" align="center"></span>
+				</h6>
+				
+				<h6 style="font-family: Verdana;" align="center">
+					Fecha Segunda Dosis: <span data-bind="html : fechaSegundaDosis"
+						style="font-family: Verdana;" align="center"></span>
+				</h6>
+				
+				<h6 style="font-family: Verdana;" align="center">
+					Centro Asignado: <span data-bind="html : centroAsignado"
+						style="font-family: Verdana;" align="center"></span>
+				</h6>
+			</div>
+			</br></br>
+			<div >
+				<table class="table table-striped table-bordered  mt-2 table-sm" style="margin: 0 auto;" border-spacing=10px>
+					<tr>
+						<th>Paciente</th>
+						<th>Centro Asignado</th>
+						<th>Fecha Primera Dosis</th>
+						<th>Fecha Segunda Dosis</th>
+						<th>Eliminar</th>
+						<th>Modificar</th>
+					</tr>
+					<!-- ko foreach : citas -->
+					<tr>
+						<td data-bind="html : dniPaciente"></td>
+						<td data-bind="html : centroAsignado"></td>
+						<td data-bind="html : fechaPrimeraDosis"></td>
+						<td data-bind="html : fechaSegundaDosis"></td>
+						 
+						<td><oj-button data-bind="click : function() { $parent.eliminarCita(id); }" class="oj-button-sm"><img class="iconoImg" src="css/delete.png"></oj-button></td>
+						<td><oj-button data-bind="click : function() { $parent.modificarCita(id); }" class="oj-button-sm"><img class="iconoImg" src="css/modify.png"></oj-button></td>
+					</tr>
+					<!-- /ko -->
+				</table>
+			
+			</div>
+			
+			
+			
+			
+		</div>
+	</div>
+</div>
+</body>
+</html>

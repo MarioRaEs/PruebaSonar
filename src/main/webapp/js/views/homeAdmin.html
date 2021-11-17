@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="css/home.css" rel="stylesheet" type="text/css">
+<head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="col-md-4 static">
+			<div class="profile-card">
+					<h1
+						style="color: #FFFFFF; position: center; float: left; margin-left: 30px; margin-right: 400px; margin-top: 5px;">SIGEVA</h1>
+					<img style="float: left;"
+						src="https://bootdey.com/img/Content/avatar/avatar1.png"
+						alt="user" class="profile-photo">
+					<h5>
+						<a href="#" style="float: left;" class="text-white">Usuario</a>
+					</h5>
+					<form class="form-signout" method="get" action="/logout">
+						<oj-button data-bind="click : logout" chroming="callToAction" style="margin-left:650px;">Cerrar Sesion</oj-button>
+					</form>
+			</div>
+			
+			<div style="margin-left:550px;">
+				<oj-button data-bind="click : mostrarUsuarios" chroming="callToAction" class="oj-button-lg"
+								 style="margin-top:3px;">Gestionar Usuarios</oj-button>
+							
+				<oj-button data-bind="click : mostrarCentros" chroming="callToAction" class="oj-button-lg"
+								data-bind="click : mostrarCentros" style="margin-top:3px;">Gestionar Centros</oj-button>		
+			</div>
+			
+			<div data-bind="visible : mostrarUsuario()==1">
+			 <div style="display: flex; margin-left: 50px; padding: 10px;" >
+					<p style="font-weight: bold; margin: 10px 10px 10px;">Añadir
+					usuario</p>
+					<input type="text" data-bind="value : nombre" placeholder="Nombre">&nbsp;&nbsp;
+					<input type="text" data-bind="value : apellidos"
+						placeholder="Apellidos">&nbsp;&nbsp; <input type="text"
+						data-bind="value : dni" placeholder="DNI">&nbsp;&nbsp; <input
+						id="tipoUsario" name="tipoUsuario" type="radio"
+						value="Administrador" />Administrador <input id="tipoUsuario"
+						name="tipoUsuario" type="radio" value="Sanitario" />Sanitario <input
+						id="tipoUsuario" name="tipoUsuario" type="radio" value="Paciente" />Paciente
+					&nbsp;&nbsp; <input type="text" data-bind="value : localidad"
+						placeholder="Localidad">&nbsp;&nbsp; <input type="text"
+						data-bind="value : provincia" placeholder="Provincia">&nbsp;&nbsp;
+					<div>
+						<oj-button chroming="callToAction" class="oj-button-sm"
+							data-bind="click : add" style="margin-top:3px;">Guardar
+						Usuario</oj-button>
+						<div data-bind="html : error" style="color: red"></div>
+						<div data-bind="html : message" style="color: blue"></div>
+					</div>
+				</div>
+				<div>
+					<table style="position:center;margin-right:250px;" class="table table-striped table-bordered  mt-2 table-sm">
+						<tr>
+							<th>Nombre</th>
+							<th>DNI</th>
+							<th>Tipo de Usuario</th>
+							<th>Centro Asignado</th>
+							<th>Dosis Administradas</th>
+							<th>Localidad</th>
+							<th>Provincia</th>
+							<th>Eliminar</th>
+							<th>Modificar</th>
+						</tr>
+						<!-- ko foreach : usuarios -->
+						<tr>
+							<td data-bind="html : nombre"></td>
+							<td data-bind="html : dni"></td>
+							<td data-bind="html : tipoUsuario"></td>
+							<td data-bind="html : centroAsignado"></td>
+							<td data-bind="html : dosisAdministradas"></td>
+							<td data-bind="html : localidad"></td>
+							<td data-bind="html : provincia"></td>
+							 
+							<td><oj-button data-bind="click : function() { $parent.eliminarUsuario(dni); }" class="oj-button-sm"><img class="iconoImg" src="css/delete.png"></oj-button></td>
+							<td><button data-bind="click : modificarUsuarios" class="oj-button-sm"><img class="iconoImg" src="css/modify.png"></button></td>
+						</tr>
+						<!-- /ko -->
+					</table>
+				</div>
+				</div>
+				<div  data-bind="visible : mostrarCentro()==1">
+					<div div style="text-align: center;">
+						<p style="font-weight: bold; margin: 10px 10px 10px;">Añadir centro</p>
+						<input type="text" data-bind="value : nombre" placeholder="Nombre">
+						<input type="text" data-bind="value : dosisAdministradas"
+							placeholder="Dosis totales">&nbsp;
+						<input type="text" id="aforo"
+							data-bind="value : aforo" placeholder="Aforo">
+						<input type="text" id="horaInicio"
+							data-bind="value : horaInicio" placeholder="Hora Inicio">
+						<input type="text" id="horaFin"
+							data-bind="value : horaFin" placeholder="Hora Fin">
+						<input type="text" data-bind="value : localidad"
+							placeholder="Localidad">
+							<input type="text"
+							data-bind="value : provincia" placeholder="Provincia">
+							<oj-button chroming="callToAction" class="oj-button-sm"
+								data-bind="click : add" style="margin-top:3px;">Guardar
+							Centro Sanitario</oj-button>
+							<div data-bind="html : error" style="color: red"></div>
+							<div data-bind="html : message" style="color: blue"></div>
+					</div>
+				<br>
+				<div>
+					<table class="table table-striped table-bordered  mt-2 table-sm" style="margin: 0 auto;" border-spacing=10px>
+						<tr>
+							<th>Nombre</th>
+							<th>Dosis totales</th>
+							<th>Aforo</th>
+							<th>Hora Inicio</th>
+							<th>Hora Fin</th>
+							<th>Localidad</th>
+							<th>Provincia</th>
+							<th>Eliminar</th>
+							<th>Modificar</th>
+						</tr>
+						<!-- ko foreach : centros -->
+						<tr>
+							<td data-bind="html : nombre"></td>
+							<td data-bind="html : dosisAdministradas"></td>
+							<td data-bind="html : aforo"></td>
+							<td data-bind="html : horaInicio"></td>
+							<td data-bind="html : horaFin"></td>
+							<td data-bind="html : localidad"></td>
+							<td data-bind="html : provincia"></td>
+							 
+							<td><oj-button data-bind="click : function() { $parent.eliminarCentro(id); }" class="oj-button-sm"><img class="iconoImg" src="css/delete.png"></oj-button></td>
+							<td><button data-bind="click : modificarCentros" class="oj-button-sm"><img class="iconoImg" src="css/modify.png"></button></td>
+						</tr>
+						<!-- /ko -->
+					</table>
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
