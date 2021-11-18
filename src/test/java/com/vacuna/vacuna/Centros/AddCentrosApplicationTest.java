@@ -37,7 +37,7 @@ public class AddCentrosApplicationTest {
 	}
 	
 	@Test
-	public void saveCentro() throws Exception {
+	private void saveCentro() throws Exception {
 		String jsonStr = "{\"nombre\":\"Hospital General\",\"dosisTotales\":\"300\",\"aforo\":\"250\",\"localidad\":\"CR\",\"provincia\":\"CR\"}";
 		JSONParser parser = new JSONParser(); 
 		JSONObject parsedJson = (JSONObject) parser.parse(jsonStr);
